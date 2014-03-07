@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>表格</title>
+<link href="http://g.assets.daily.taobao.net/aliyun/abc/0.0.1/css/main.css?t=201311201215" rel="stylesheet" />
+
+<script src="http://g.assets.daily.taobao.net/aliyun/abc/0.0.1/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+<script>
+(function(){
+    var LOCAL_HOST = 'http://127.0.0.1:12688/aliyun/abc/0.0.1/';
+    seajs.config({
+        base: LOCAL_HOST,
+        alias: {
+            '$'             : 'gallery/jquery/1.10.2/jquery',
+            '$-debug'       : 'gallery/jquery/1.10.2/jquery-debug',
+            'jquery'        : 'gallery/jquery/1.10.2/jquery',
+            'jquery-debug'  : 'gallery/jquery/1.10.2/jquery-debug',
+            'artTemplate'   : 'gallery/artTemplate/2.0.2/artTemplate',
+            'dialog'        : 'arale/dialog/1.2.5/dialog-debug',
+            'comfirmbox'    : 'arale/dialog/1.2.5/confirmbox-debug',
+            'tabs'          : 'arale/switchable/1.0.2/tabs',
+            'underscore'    : 'gallery/underscore/1.4.3/underscore',
+            'backbone'      : 'gallery/backbone/0.9.10/backbone',
+            'backbone-debug': 'gallery/backbone/0.9.10/backbone-debug'
+        },
+        preload: [
+          'libs/seajs/2.1.1/seajs-style'
+        ],
+
+        'map': [
+            [ /^(.*\.(?:css|js))(.*)$/i, '$1?20140103' ]
+        ]
+
+
+    });
+
+})();
+</script>
+<link href="http://g.assets.daily.taobao.net/aliyun/abc/0.0.1/css/demo.css?t=201311201212" rel="stylesheet" />
+</head>
+<body>
+
+<div class="wrap">
+
+</div>
+
+<script>
+
+seajs.use(['$'],function($){
+    //页面前端代码
+})
+</script>
+
+</body>
+</html>

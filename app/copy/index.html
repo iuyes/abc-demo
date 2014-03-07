@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>复制</title>
+<link href="http://g.tbcdn.cn/aliyun/abc/@@version/css/main.css?t=201311201215" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="wrap">
+
+</div>
+
+<script>
+seajs.use(['$','arale/copy/ZeroClipboard'],function($,ZeroClipboard){
+	ZeroClipboard.config({ moviePath: "/backmanage/assets/arale/copy/ZeroClipboard.swf",swfPath:"/backmanage/assets/arale/copy/ZeroClipboard.swf"});
+	var client = new ZeroClipboard( document.getElementById("btn-copy"));
+		console.log(client)
+	client.on( "load", function(client) {
+
+		console.log(99)
+		client.on( "complete", function(client, args) {
+		//this.style.display = "none";
+			alert("Copied text to clipboard: " + args.text );
+		});
+
+	});
+
+	client.on('noFlash',function(client){
+		console.log("your browser has no flash");
+	});
+
+});
+</script>
+</body>
+</html>

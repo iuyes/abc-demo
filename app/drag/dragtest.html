@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>阿里云 - 拖动</title>
+
+<link href="http://g.tbcdn.cn/aliyun/abc/@@version/css/main.css?t=201311201215" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+</head>
+<body>
+
+<div class="wrap drag-wrap">
+    <div class="demo-wrap">
+    <h3>1.基本调用</h3>
+    <dl >
+        <dt style="height:80px">
+            <div class="test-drag drag-top50 test-drag-i" style="left:10px"><h1>1</h1></div>
+            <div class="test-drag drag-top50 test-drag-i" style="left:100px"><h1>2</h1></div>
+            <div class="test-drag drag-top50 test-drag-i" style="left:190px"><h1>3</h1></div>
+
+        </dt>
+    <dd>
+    <div class="highlight">
+<pre>
+seajs.use(['$','drag'],function($,drag){
+    drag($);
+    $('.test-drag-i').drag('start',function(){
+         $(this).addClass('test-drag-active');
+    }).drag(function(e,d){
+        $(this).css({
+            top: d.offsetY,
+            left: d.offsetX
+        })
+    }).drag('end',function(){
+        $(this).removeClass('test-drag-active');
+    });
+});
+
+</pre>
+    </div>
+    </dd>
+    </dl>
+
+    </div>
+
+    <div class="demo-wrap">
+    <h3>2.被拖动元素定位相于外部容器</h3>
+    <dl >
+        <dt>
+            <div class="re-warp pr">
+                <div class="test-drag drag-top10 test-drag-r" style="left:10px"><h1>1</h1></div>
+                <div class="test-drag drag-top10 test-drag-r" style="left:100px"><h1>2</h1></div>
+                <div class="test-drag  drag-top10 test-drag-r" style="left:190px"><h1>3</h1></div>
+
+            </div>
+        </dt>
+    <dd>
+    <div class="highlight">
+<pre>
+seajs.use(['$','drag'],function($,drag){
+    drag($);
+     $('.test-drag-r').drag(function( ev, dd ){
+                $( this ).css({
+                    top: dd.offsetY,
+                    left: dd.offsetX
+                });
+    },{ relative:true });
+})
+</pre>
+    </div>
+    </dd>
+    </dl>
+
+    </div>
+
+
+    <div class="demo-wrap">
+    <h3>3.带有方向的拖动</h3>
+    <dl >
+        <dt>
+            <div class="re-warp pr">
+                 <div class="test-drag drag-top10  test-drag-x" style="left:10px"><h1>1</h1></div>
+                 <div class="test-drag drag-top10  test-drag-x" style="left:100px"><h1>2</h1></div>
+                <div class="test-drag drag-top10  test-drag-x" style="left:190px"><h1>3</h1></div>
+
+            </div>
+        </dt>
+    <dd>
+    <div class="highlight">
+<pre>
+seajs.use(['$','drag'],function($,drag){
+    drag($);
+    $('.test-drag-x').drag(function( ev, dd ){
+            $( this ).css({
+                left: dd.offsetX
+            });
+    });
+})
+</pre>
+    </div>
+    </dd>
+    </dl>
+
+    </div>
+
+
+<div class="demo-wrap">
+    <h3>4.限制在容器内的拖动</h3>
+    <dl >
+        <dt>
+            <div class="re-warp pr" id="container-wrap">
+                 <div class="test-drag drag-top10  test-drag-con" style="left:10px"><h1>1</h1></div>
+                 <div class="test-drag drag-top10  test-drag-con" style="left:100px"><h1>2</h1></div>
+                <div class="test-drag drag-top10  test-drag-con" style="left:190px"><h1>3</h1></div>
+
+            </div>
+        </dt>
+    <dd>
+<div class="highlight">
+<pre>
+seajs.use(['$','drag'],function($,drag){
+    drag($);
+    var _container = $("#container-wrap");
+    $('.test-drag-con').drag('start',function(ev,dd){
+        dd.limit = _container.offset();
+        dd.limit.bottom = dd.limit.top + _container.outerHeight() - $(this).outerHeight();
+        dd.limit.right = dd.limit.left + _container.outerWidth() - $(this).outerWidth();
+    }).drag(function(ev,dd){
+        $(this).css({
+            top:Math.min(dd.limit.bottom,Math.max(dd.limit.top,dd.offsetY)) - dd.limit.top,
+            left:Math.min(dd.limit.right,Math.max(dd.limit.left, dd.offsetX)) - dd.limit.left
+        })
+    });
+})
+</pre>
+</div>
+    </dd>
+    </dl>
+</div>
+
+
+<div class="demo-wrap">
+    <h3>5.handle拖动</h3>
+    <dl >
+        <dt>
+            <div class="re-warp pr" id="container-wrap">
+                 <div class="test-drag drag-top10 test-drag-handle" style="left:10px">
+                    <div class="test-drag-title">drag</div>
+                    <h1>1</h1>
+                </div>
+                 <div class="test-drag drag-top10 test-drag-handle" style="left:100px">
+                    <div class="test-drag-title">drag</div>
+                    <h1>2</h1>
+                 </div>
+                <div class="test-drag drag-top10 test-drag-handle" style="left:190px">
+                    <div class="test-drag-title">drag</div>
+                    <h1>3</h1>
+                </div>
+
+            </div>
+        </dt>
+    <dd>
+<div class="highlight">
+<pre>
+seajs.use(['$','drag'],function($,drag){
+    drag($);
+     $('.test-drag-handle').drag(function( ev, dd ){
+            $( this ).css({
+                top: dd.offsetY,
+                left: dd.offsetX
+            });
+        },{handle:".test-drag-title",relative:true });
+})
+</pre>
+</div>
+    </dd>
+    </dl>
+</div>
+
+
+</div>
+
+</body>
+
+ <script>
+
+seajs.use(['$','drag'],function($,drag){
+    drag($);
+    //基本调用
+    $('.test-drag-i').drag('start',function(){
+         $(this).addClass('test-drag-active');
+    }).drag(function(e,d){
+        $(this).css({
+            top: d.offsetY,
+            left: d.offsetX
+        })
+    }).drag('end',function(){
+        $(this).removeClass('test-drag-active');
+    });
+
+    //相对容器的调用
+    $('.test-drag-r').drag(function( ev, dd ){
+            $( this ).css({
+                top: dd.offsetY,
+                left: dd.offsetX
+            });
+        },{ relative:true });
+
+
+    //带有方向的拖动
+    $('.test-drag-x').drag(function( ev, dd ){
+        $( this ).css({
+            left: dd.offsetX
+        });
+    });
+
+    //限制在容器内的拖动
+    var _container = $("#container-wrap");
+    $('.test-drag-con').drag('start',function(ev,dd){
+        dd.limit = _container.offset();
+        dd.limit.bottom = dd.limit.top + _container.outerHeight() - $(this).outerHeight();
+        dd.limit.right = dd.limit.left + _container.outerWidth() - $(this).outerWidth();
+    }).drag(function(ev,dd){
+        $(this).css({
+            top:Math.min(dd.limit.bottom,Math.max(dd.limit.top,dd.offsetY)) - dd.limit.top,
+            left:Math.min(dd.limit.right,Math.max(dd.limit.left, dd.offsetX)) - dd.limit.left
+        })
+    });
+
+    //handle拖动
+    $('.test-drag-handle').drag(function( ev, dd ){
+            $( this ).css({
+                top: dd.offsetY,
+                left: dd.offsetX
+            });
+        },{handle:".test-drag-title",relative:true });
+
+});
+ </script>
+
+</html>

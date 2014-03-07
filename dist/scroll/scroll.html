@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>阿里云 - 滚动</title>
+<link href="http://g.tbcdn.cn/aliyun/abc/0.0.8/css/main.css?t=201311201215" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/0.0.8/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/0.0.8/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="wrap">
+    <div class="demo-wrap">
+    <h3>1.scroll基本调用</h3>
+    <dl >
+        <dt>
+            <div class="sql_list">
+                                <dl>
+                                    <dt>
+                                        <span class="span_1"><label><input type="checkbox">全选</label></span><span class="span_2">数据表</span><span class="span_3">描述</span>
+                                    </dt>
+                                    <dd id="scroll-wrap">
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                        <p><span class="span_1"><input type="checkbox"></span><span class="span_2">pw_mode</span><span class="span_3">表说明</span></p>
+                                    </dd>
+                                </dl>
+                            </div>
+        </dt>
+    <dd>
+    <div class="highlight">
+<pre>
+
+seajs.use(['$','scroll'],function($,scroll){
+
+    var Scroll = scroll($);
+    $("#scroll-wrap").niceScroll({cursorcolor:"#5a91d3"});
+
+});
+</pre>
+    </div>
+    </dd>
+    </dl>
+</div>
+
+</body>
+
+ <script>
+
+seajs.use(['$','scroll'],function($,scroll){
+
+    var Scroll = scroll($);
+    $("#scroll-wrap").niceScroll({cursorcolor:"#5a91d3"});
+
+});
+ </script>
+
+</html>

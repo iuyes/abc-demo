@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>阿里云 - 通用表单</title>
+<link href="http://g.tbcdn.cn/aliyun/abc/0.0.8/css/main.css?t=201311201215" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/0.0.8/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/0.0.8/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+</head>
+<body>
+
+<div class="wrap">
+    <div class="h_a">表单实例</div>
+    <div class="table_full">
+        <form action="" id="J-form">
+            <table width="100%">
+                <colgroup>
+                    <col width="130"></col>
+                </colgroup>
+                <tr>
+                    <th><span class="org">*</span>云账号:</th>
+                    <td>
+                        <input name="yunid" type="text" class="input length_4 mr10">
+                    </td>
+                </tr>
+                <tr>
+                    <th>手机号码:</th>
+                    <td>
+                        <input name="phone" type="text" class="input length_4 mr10">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="org">*</span>问题标题:</th>
+                    <td>
+                        <input name="title" type="text" class="input length_4 mr10">
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="org">*</span>问题描述:</th>
+                    <td>
+                        <textarea placeholder="请输入2-500个字符" name="remark" class="length_6"></textarea>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th><span class="org">*</span>使用产品与服务:</th>
+                    <td>
+                        <select  name="productId" class="length_4">
+                                <option value="">请选择</option>
+                                <option value="12">云服务器 ECS</option>
+                                <option value="10">关系型数据库 RDS</option>
+                                <option value="86">负载均衡 SLB</option>
+                                <option value="22">开放存储服务 OSS</option>
+                                <option value="80">云盾</option>
+                                <option value="90">云监控</option>
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th><span class="org">*</span>接手组:</th>
+                    <td>
+                        <select name="groupId" class="length_4">
+                            <option value="">请选择</option>
+                            <option value="1">ECS PE组</option> 
+                            <option value="2">技术研发</option>                    
+                            <option value="3">运营</option>                                 
+                            <option value="4">产品</option>                                
+                            <option value="5">测试</option>                                               
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="org">*</span>分配:</th>
+                    <td>
+                        <label class="mr10"><input name="fp" type="checkbox">客服</label>
+                        <label class="mr10"><input name="fp" type="checkbox">开发</label>
+                        <label class="mr10"><input name="fp" type="checkbox">财务部</label>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th><span class="org">*</span>备注留言:</th>
+                    <td>
+                        <p class="gray">涉及商业,技术机密的请写在此处</p>
+                       <textarea name="bzremark" class="length_6"></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <th></th>
+                    <td><button  type="submit" class="btn btn_submit">提交</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+
+<script>
+seajs.use(['$','biz/component/plugin.validate','biz/component/plugin.ajaxform'],function($,validate,ajaxform){
+    var validate = validate($);
+    var ajaxform = ajaxform($);
+
+    $.validator.addMethod("isPhone",function(val,ele){
+        var phoneReg =  /^0?(13[0-9]|15[012356789]|18[0236789]|14[57])[0-9]{8}$/;
+        var len = val.length;
+        return this.optional(ele) || (len==11 && phoneReg.test($.trim(val)));
+    });
+    
+    var _rules = {
+        'yunid' : {
+            required : true
+        },
+        'phone' : {
+            isPhone: true
+        },
+        'title' :{
+            required:true
+        },
+        'remark' :{
+            required : true,
+            minlength : 2,
+            maxlength : 500
+        },
+        'productId' : {
+            required:true
+        },
+        'groupId' :{
+            required:true
+        },
+        'fp' : {
+            required:true
+        },
+        'bzremark':{
+            required:true
+        }
+    };
+    var _messages = {
+        'yunid' : {
+            required : "用户名必填"
+        },
+        'phone' : {
+            isPhone: "手机号码格式有误"
+        },
+        'title' :{
+            required:"此项必填"
+        },
+        'remark' :{
+            required : "此项必填",
+            minlength : "字符长度为2-500",
+            maxlength : "字符长度为2-500"
+        },
+        'productId' : {
+            required:"此项必选"
+        },
+        'groupId' :{
+            required:"此项必选"
+        },
+        'fp' : {
+            required:"此项必选"
+        },
+        'bzremark':{
+            required:"此项必填写"
+        }
+    };
+
+  //报名表单验证        
+    $.validator.setDefaults({
+        submitHandler: function(form) { 
+
+        $.ajaxSubmit({
+            formEle: form,
+            submitBtnEle: $(form).find('button[type=submit]')
+        });
+            
+    /*
+    new Dialog({
+        content: '<div class="p20 tac"><span class="tips_loading mr10"></span><span class="vt" style="line-height:28px">正在提交,请稍候...</span></div>',
+        closeTpl :false,
+        width : 300
+    }).show();
+    */
+        }
+    });
+
+    $("#J-form").validate({
+        errorClass:"tip-error",
+        errorElement:"span",
+        onkeyup:false,
+        errorPlacement:function(error,element){
+            var p;
+            if (element.is(":checkbox") || element.is(":radio") || element.is("input[type=file]")) {
+                p = element.parent().parent();
+            }else{ 
+                p = element.parent(); 
+            }
+            if(p.find("span.tip-right").length > 0){
+                p.find("span").remove();
+            }
+            error.appendTo(p); 
+        },
+        rules:_rules,
+        messages:_messages,
+        success:function(label){
+            label.removeClass("tip-error").addClass("tip-right")
+        }
+    });
+
+
+});
+</script>
+
+</body>
+</html>

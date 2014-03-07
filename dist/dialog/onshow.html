@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<link href="http://g.tbcdn.cn/aliyun/abc/0.0.8/css/main.css?t=201308301020" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/0.0.8/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/0.0.8/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+
+<title>dialog - onshow</title>
+</head>
+<body>
+
+<div class="wrap pr" id="workerWrap">
+    </div>
+
+<div style="display:none" id="tpl">
+
+seajs.use(['dialog'],function(Dialog){
+new Dialog({
+    content: '&lt;div style="padding:50px 20px"&gt;页面直接弹个框&lt;/div&gt;',
+    closeTpl :false
+}).show();
+});
+
+</div>
+ <script>
+ seajs.use(['$','dialog'],function($,Dialog){
+ 	var html = $("#tpl").html();
+    new Dialog({
+        content: '<div style="padding:50px 20px">页面直接弹个框<pre>'+html+'</pre></div>',
+        closeTpl :false
+    }).show();
+
+ });
+ </script>
+</html>

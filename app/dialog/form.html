@@ -1,0 +1,121 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<link href="http://g.tbcdn.cn/aliyun/abc/@@version/css/main.css?t=201308301020" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+<title>阿里云 - 商业中心</title>
+</head>
+<body>
+    <div class="h_a">搜索工单</div>
+    <div class="table_full">
+        <form id="J_post_works">
+            <table width="100%">
+            <colgroup>
+                <col width="80"></col>
+            </colgroup>
+            <tr>
+                <td><span class="org">*</span>工单号:</td>
+                <td class="tdContent">
+                    <input  name="questionId" type="text" class="input length_3">
+                </td>
+            </tr>
+            <tr>
+                <td><span class="org">*</span>用户名:</td>
+                <td class="tdContent">
+                     <input  name="username" type="text" class="input length_3">
+                </td>
+            </tr>
+
+            <tr>
+                <td><span class="org">*</span>关键字:</td>
+                <td class="tdContent">
+                     <input  name="keyword" type="text" class="input length_3">
+                </td>
+            </tr>
+
+            <tr>
+                <td><span class="org">*</span>问题评价:</td>
+                <td class="tdContent">
+                     <input  name="pj" type="text" class="input length_3">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="tdContent">
+                    <button id="J_search" class="btn btn_submit" type="submit">提交</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    </div>
+    <script>
+    seajs.use(['$','biz/component/plugin.validate.js'],function($,validate){
+        var validate = validate($);
+        var _rules = {
+            'questionId' : {
+                required : true
+            },
+            'username' :{
+                required : true
+            },
+            'keyword':{
+                required:true
+            },
+            'pj':{
+                required:true
+            }
+        };
+        var _messages = {
+            'questionId' : {
+                required : "此项必填"
+            },
+            'username' :{
+                required : "此项必填"
+            },
+            'keyword':{
+                required:"此项必填"
+            },
+            'pj':{
+                required:"此项必填"
+            }
+
+        };
+         //报名表单验证        
+    $.validator.setDefaults({
+        submitHandler: function(form) { 
+            form.submit();
+            //$.ajax({
+
+            //}) 
+        }
+    });
+    $("#J_post_works").validate({
+        errorClass:"tip-error",
+        errorElement:"span",
+        onkeyup:false,
+        errorPlacement:function(error,element){
+            var p;
+                p = element.parent(); 
+            if(p.find("span.tip-right").length > 0){
+                p.find("span").remove();
+            }
+            error.appendTo(p); 
+        },
+        rules:_rules,
+        messages:_messages,
+        success:function(label){
+            label.removeClass("tip-error").addClass("tip-right")
+        }
+    })
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>阿里云 - 业务支撑系统</title>
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/libs/seajs/2.1.1/sea.js?v=20140321"></script>
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/biz/seajs-config.js?v=20140321"></script>
+
+<link href="http://g.tbcdn.cn/aliyun/abc/@@version/abc/index/3.0/css/index.css?v=20140321" rel="stylesheet" />
+
+</head>
+<body>
+<div class="wrap">
+    <table width="100%" height="100%" style="table-layout:fixed;">
+        <tr id="J_page_top" class="head compute-head">
+            <th><a href="#" class="logo">阿里云业务支撑系统</a></th>
+            <td>
+                <div class="nav">
+                    <!-- 菜单异步获取，采用json格式，由js处理菜单展示结构 -->
+                    <ul id="J_B_main_block"></ul>
+                </div>
+                <div class="login_info">
+                    <span class="mr10"><i></i>siwei.ransw</span>| <a href="#" class="mr10">注销</a>
+                </div>
+            </td>
+        </tr>
+
+        <tr id="J_page_tab" class="tab compute-tab">
+            <th valign="top">
+                <h2 class="subTitle" id="subTitlec"></h2>
+            </th>
+
+           <td id="J_tabView" valign="top">
+           
+                <!--
+                <div id="B_tabA" class="tabA">
+                    <a href="" tabindex="-1" class="tabA_pre" id="J_prev" title="上一页">上一页</a>
+                    <a href="" tabindex="-1" class="tabA_next" id="J_next" title="下一页">下一页</a>
+                    
+                    <div style="margin:0 25px;min-height:1px;">
+                        <div style="position:relative;height:30px;width:100%;overflow:hidden;">
+                            <ul id="B_history" style="white-space:nowrap;position:absolute;left:0;top:0;">
+                                <li class="current" data-id="default" tabindex="0" data-path="后台首页"><span><a>后台首页</a></span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                -->
+                
+                
+            </td>
+        </tr>
+
+        <tr class="content">
+            <th>
+                <div id="B_menunav">
+                    <div id="B_menubar" class="menubar" style="overflow:auto;">
+                        
+                    </div>
+                </div>
+            </th>
+
+            <td id="B_frame" class="J_frame_page" valign="top" style="width:500px;">
+                <div id="breadCrumb">后台首页</div>
+                <div class="options">
+                    <a href="#" class="refresh" id="J_refresh" title="刷新">刷新</a>
+                    <a href="#" id="J_fullScreen" class="full_screen" title="全屏">全屏</a>
+                </div>
+                <div class="loading" id="loading">加载中...</div>
+                 <!--
+                <iframe id="iframe_default" src="${homeUrl}" height="100%" width="100%" style="display:none;" data-id="default" frameborder="0" scrolling="auto"></iframe>
+               
+                <iframe id="iframe_default" src="text.html" height="100%" width="100%" style="display:none;" data-id="default" frameborder="0" scrolling="auto"></iframe>
+            -->
+            </td>
+        </tr>
+
+        <tr id="J_page_foot"></tr>
+
+
+    </table>
+</div>
+
+
+<script id="subContentTpl" type="text/template">
+<dl>
+    <% for (var i = 0 ,len = obj.length; i < len; i ++) { %>
+    <dt class="current J_sub_menu_title" data-role="trigger"><a href="#" hidefocus="true"><%= obj[i].name %><em></em></a></dt>
+    <% if (obj[i].items.length > 0) {%>
+    <dd class="J_sub_menu_content" data-role="panel">
+        <ul>
+            <% for (var j = 0 ,l = obj[i].items.length; j < l; j++) { %>
+            <li>
+                <% if (obj[i].items[j].isTargetBlank) { %>
+                <a href="<%=obj[i].items[j].url%>" target="_blank"><%= obj[i].items[j].name %></a>
+                <% } else { %>
+                <a class="J_menu_leaf" href="<%=obj[i].items[j].url%>" data-path="<%=obj[i].items[j].path%>" data-title="<%=obj[i].items[j].title%>" data-state="<%=obj[i].items[j].state%>" data-url="<%=obj[i].items[j].url%>"><%= obj[i].items[j].name %></a>
+                <% } %>
+            </li>
+            <% } %>
+        </ul> 
+    </dd>
+    <% } %>
+    <% } %>
+</dl>
+</script>
+
+<script id="topMenuTpl" type="text/template">
+    <li>
+       <a data-id='<%= menu.id %>' id="TM<%= menu.id %>" class="topMenuLists J_top_menu_trigger">
+          <em style="cursor:pointer"></em>
+          <span style="cursor:pointer"><%= menu.name %></span>
+       </a>
+       <div style="display:none" class="t-subMenu J_top_menu_popup">
+           <% for (var i = 0 ,l = menu.items.length; i < l; i++) { %>
+           <p data-menu-id="<%= menu.items[i].id%>" id="<%= menu.items[i].id%>"><a class="J_top_menu" data-menu-id="<%= menu.items[i].id%>" id="<%= menu.items[i].id%>" href="#"><%= menu.items[i].name %></a> </p>
+           <% } %>
+       </div>
+    </li>
+</script>
+
+
+<script>
+seajs.use(['abc/index/3.0/main'], function(i){
+    i.init({
+            menuData:  [{
+                "id":"156",
+                "name":"基础样式",
+                "items":[{
+                    "id":"25555",
+                    "name":"基础样式",
+                    "items":[
+                        {
+                            "id":"3456",
+                            "name":"静态页面",
+                            "items":[
+                            {
+                                "id":"34561",
+                                "name":"页面模板",
+                                "state":"on",
+                                "url": "./page/index.html"
+                            }
+                            ]
+                        },
+                        {
+                            "id":"333",
+                            "name":"表格",
+                            "items":[
+                                {
+                                    "id":"43331",
+                                    "name":"数据表格",
+                                    "state":"on",
+                                    "url": "./table/table1.html"
+                                },
+                                {
+                                    "id":"45333",
+                                    "name":"操作型表格",
+                                    "state":"on",
+                                    "url": "./table/table3.html"
+                                },
+                                {
+                                    "id":"43332",
+                                    "name":"交叉型表格",
+                                    "state":"on",
+                                    "url": "./table/table2.html"
+                                }
+                            ]
+                        },
+                        {
+                            "id":"2348",
+                            "name":"表单",
+                            "items":[
+                                {
+                                    "id":"23481",
+                                    "name":"表单元素",
+                                    "url":"./form/input.html"
+                                }
+                            ]
+                        },
+                        {
+                            "id":"2346",
+                            "name":"按钮",
+                            "items":[
+                                {
+                                    "id":"23461",
+                                    "name":"按钮",
+                                    "url":"./btn/index.html"
+                                }
+                            ]
+                        },
+                        {
+                            "id":"2345",
+                            "name":"分页",
+                            "items":[
+                                {
+                                    "id":"23451",
+                                    "name":"基础分页",
+                                    "url":"./pages/index.html"
+                                }
+                            ]
+                        },
+                        {
+                            "id":"2346",
+                            "name":"选项卡",
+                            "items":[
+                                {
+                                    "id":"23461",
+                                    "name":"选项卡",
+                                    "url":"./tabs/index.html"
+                                }
+                            ]
+                        },
+                                                {
+                            "id":"2347",
+                            "name":"操作提示",
+                            "items":[
+                                {
+                                    "id":"23471",
+                                    "name":"操作提示",
+                                    "url":"./tips/index.html"
+                                }
+                            ]
+                        },
+
+                    ]
+                }
+                ]
+            },
+            //第二个
+                {
+                    "id":"1",
+                    "name":"控件库Demo",
+                    "items":[{
+                        "id":"2",
+                        "name":"控件库Demo",
+                        "items":[
+                            {
+                                "id":"3",
+                                "name":"弹出框",
+                                "items":[
+                                    {
+                                        "id":"4",
+                                        "name":"基础调用",
+                                        "state":"on",
+                                        "url": "./dialog/index.html"
+                                    },
+                                    {
+                                        "id":"433",
+                                        "name":"Dialog直接显示",
+                                        "state":"on",
+                                        "url": "./dialog/onshow.html"
+                                    },
+
+                                    {
+                                        "id":"45",
+                                        "name":"ConfirmBox对话框",
+                                        "state":"on",
+                                        "url": "./dialog/confirm.html"
+                                    }]
+                            },
+                            {
+                                "id":"311",
+                                "name":"表单",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"通用表单及验证",
+                                        "state":"on",
+                                        "url": "./form/index.html"
+                                    }]
+                            },
+                            {
+                                "id":"311",
+                                "name":"表格",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"表格编辑",
+                                        "state":"on",
+                                        "url": "./edittable/index.html"
+                                    }]
+                            },
+                            {
+                                "id":"3111",
+                                "name":"Drag",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"拖动",
+                                        "state":"on",
+                                        "url": "./drag/dragtest.html"
+                                    }]
+                            },
+                            {
+                                "id":"3112",
+                                "name":"滚动Scroll",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"scroll",
+                                        "state":"on",
+                                        "url": "./scroll/scroll.html"
+                                    }]
+                            },
+                                                       {
+                                "id":"3115",
+                                "name":"文件上传",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"文件上传",
+                                        "state":"on",
+                                        "url": "./upload/index.html"
+                                    }]
+                            },
+                            /*
+                            {
+                                "id":"3114",
+                                "name":"复制功能",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"复制",
+                                        "state":"on",
+                                        "url": "/demo/copy/index.html"
+                                    }]
+                            },
+                            */
+                            {
+                                "id":"3113",
+                                "name":"日历",
+                                "items":[
+                                    {
+                                        "id":"45",
+                                        "name":"日历选择",
+                                        "state":"on",
+                                        "url": "./calendar/index.html"
+                                    }]
+                            }
+
+
+
+                        ]
+                    }
+                    ]
+                }
+            ]   
+    });
+    
+    
+});
+</script>
+
+</body>
+</html>

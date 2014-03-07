@@ -1,0 +1,57 @@
+.demo-wrap{
+	padding: 0 0 15px 0;
+}
+.highlight{
+	margin-bottom: 15px;
+}
+.highlight pre{
+	margin: 6px 0;
+border: 1px solid #eee;
+padding: 6px 10px;
+overflow: auto;
+border-radius: 2px;
+background-color: #f8f8f9;
+line-height: 19px;
+font-size: 13px;
+white-space: pre;
+}
+.drag-wrap .test-drag{
+	position: absolute;
+	border: 1px solid #5a91d3;
+	background: #7cb3f6;
+	height: 70px;
+	width: 70px;
+	cursor: move;
+}
+.drag-wrap .test-drag-active{
+	border: 1px dashed #5a91d3;
+	 filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}
+.drag-wrap .test-drag-title{
+	border-bottom: 1px solid #5a91d3;
+	line-height: 20px;
+	text-align: center;
+	color: #fff;
+	cursor: move;
+}
+.drag-top50{
+	top:50px;
+}
+.drag-top10{
+	top:10px;
+}
+
+.drag-wrap h1{
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 70px;
+	text-align: center;
+}
+.drag-wrap .re-warp{
+	height: 200px;
+	border: 1px dashed #888
+}
+.drag-wrap .test-drag-handle{
+	cursor: default;
+}

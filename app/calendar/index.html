@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>日历</title>
+<link href="http://g.tbcdn.cn/aliyun/abc/@@version/css/main.css?t=201311201215" rel="stylesheet" />
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+</head>
+<body>
+
+<div class="wrap">
+    <div class="demo-wrap">
+         <h3>1.基本用例</h3>
+         <dl>
+         	<dt><input type="text" class="input length2" id="date-simple" /></dt>
+         	<dd>
+ <div class="highlight">
+<pre>
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-simple"});
+})
+</pre>
+ </div>
+         	</dd>
+         </dl>
+
+<h3>2.设置初始值,例如初始值为2014-2-14</h3>
+<dl>
+	<dt><input type="text" class="input length2" value="2014-2-14" id="date-initval" /></dt>
+	<dd>
+ <div class="highlight">
+<pre>
+&lt;input type="text" class="input length2" value="2014-2-14" id="date-initval" /&gt;
+
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-initval"});
+})
+</pre>
+</div>
+	</dd>
+</dl>
+
+<dl>
+	<dt><input type="text" class="input length2"  id="date-initval2" /></dt>
+	<dd>
+ <div class="highlight">
+<pre>
+&lt;input type="text" class="input length2"  id="date-initval2" /&gt;
+
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-initval2",focus: '2014-2-15'});
+})
+</pre>
+</div>
+	</dd>
+</dl>
+
+<h3>3.限定日期选择范围</h3>
+<dl>
+	<dt>
+		<p>比如只能选择2014-02-02到2012-02-14之间的日期</p>
+		<input type="text" class="input length2" id="date-range" value="2014-02-06" />
+	</dt>
+	<dd>
+<div class="highlight">
+<pre>
+&lt;input type="text" class="input length2" id="date-range" value="2014-02-06" /&gt;
+
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-range",range:['2014-02-02','2014-02-14']});
+})
+</pre>
+</div>
+
+	</dd>
+</dl>
+
+<dl>
+	<dt>
+		<p>比如只能选择2014-02-14之前的日期</p>
+		<input type="text" class="input length2" id="date-range2" value="2014-02-06" />
+	</dt>
+	<dd>
+<div class="highlight">
+<pre>
+&lt;input type="text" class="input length2" id="date-range2" value="2014-02-06" /&gt;
+
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-range2",range:[null,'2014-02-14']});
+})
+</pre>
+</div>
+	</dd>
+	</dl>
+
+
+<h3>4.触发点不是输入框</h3>
+<dl>
+	<dt>
+		<input type="text" id="date-output" class="input" />
+		<a href="javascript:;" id="date-trigger">点这里出现日历</a>
+	</dt>
+	<dd>
+<div class="highlight">
+<pre>
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-trigger",output:"#date-output"});
+})
+</pre>
+</div>
+	<dd>
+</dl>
+
+    </div>
+</div>
+
+<script>
+seajs.use(['$','arale/calendar/1.0.0/calendar','arale/calendar/1.0.0/calendar.css'],function($,calendar){
+	new calendar({trigger:"#date-simple"});
+	new calendar({trigger:"#date-initval"});
+	new calendar({trigger:"#date-initval2",focus: '2014-2-15'});
+	new calendar({trigger:"#date-range",range:['2014-02-02','2014-02-14']});
+	new calendar({trigger:"#date-range2",range:[null,'2014-02-14']});
+
+	new calendar({trigger:"#date-trigger",output:"#date-output"});
+
+})
+</script>
+</body>
+</html>

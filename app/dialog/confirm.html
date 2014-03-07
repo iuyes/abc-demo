@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+
+<link href="http://g.tbcdn.cn/aliyun/abc/@@version/css/main.css?t=201308301020" rel="stylesheet" />
+
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/libs/seajs/2.1.1/sea.js?t=201308301020"></script>
+
+<script src="http://g.tbcdn.cn/aliyun/abc/@@version/biz/seajs-config.js?t=201308301020"></script>
+
+<link href="../css/demo.css?t=201311201212" rel="stylesheet" />
+<title>dialog-confirm</title>
+</head>
+<body>
+
+<div class="wrap pr" id="workerWrap">
+    <div class="demo-wrap">
+    <h3>1.基本调用</h3>
+<dl>
+    <dt><a href="#" id="J-confirm-dialog">点击这里弹出</a></dt>
+    <dd>
+        <div class="highlight">
+<pre>
+seajs.use(['comfirmbox'], function(ConfirmBox) {
+    var cb = new ConfirmBox({
+        trigger: '#J-confirm-dialog',
+        title: '这里是标题',
+        width:300,
+        message: '这里是内容',
+        onConfirm: function() {
+            var that = this;
+            alert("回调写在onConfirm里面");
+            that.hide();
+        }
+    });
+});
+</pre>
+        </div>
+    </dd>
+</dl>
+
+</div>
+
+
+
+<div class="demo-wrap">
+
+
+<h3>2.ConfirmBox静态方法---ConfirmBox.alert</h3>
+<dl>
+    <dt>
+        <a href="#" id="J-alert-info" class="mr10">信息提示</a>
+        <a href="#" id="J-alert-success" class="mr10">成功信息</a>
+        <a href="#" id="J-alert-warn" class="mr10">警告信息</a>
+        <a href="#" id="J-alert-error" class="mr10">错误信息</a>
+         <a href="#" id="J-alert-fz">复杂提示信息</a>
+    </dt>
+    <dd>
+    <div class="highlight">
+<pre>
+ seajs.use(['$','comfirmbox'],function($,ConfirmBox){
+    $("#J-alert-info").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这是个普通的提示',null,{width:300,stype:'info'});
+    });
+
+    $("#J-alert-success").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这是成功的提示',null,{width:300,stype:'success'});
+    });
+
+    $("#J-alert-warn").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这是警告提示',null,{width:300,stype:'warn'});
+    });
+
+        $("#J-alert-error").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这里是错误的提示',null,{width:300,stype:'error'});
+    });
+
+    $("#J-alert-fz").click(function(e){
+        e.preventDefault();
+        var _errorHtml = '上传失败,请上传10M以内的文件&lt;br&gt;';
+            _errorHtml += '&lt;span class="gray f12"&gt;有问题请咨询:0571-34566777&lt;/span&gt;&lt;br&gt;'
+            _errorHtml += '&lt;span class="f12"&gt;&lt;a href="#"&gt;返回首页&lt;/&gt;&lt;/span&gt;';
+        ConfirmBox.alert(_errorHtml,null,{width:500,stype:'error'});
+    });
+ });
+ 
+</pre>
+    </div>
+    </dd>
+</dl>
+</div>
+
+
+<div class="demo-wrap">
+
+<h3>3.ConfirmBox静态方法---ConfirmBox.confirm</h3>
+<dl>
+    <dt><a href="#" id="J-confirm-con">点击这里</a></dt>
+    <dd>
+        <div class="highlight">
+<pre>
+$("#J-confirm-con").click(function(e){
+    e.preventDefault();
+    ConfirmBox.confirm('这里真的是confirm的静态方法吗?',"自定义标题",function(){
+        alert('这里是确定');
+    },{width:350});
+});
+
+</pre>
+        </div>
+    </dd>
+</dl>
+</div>
+
+
+<div class="demo-wrap">
+
+<h3>4.自定义一个模态框</h3>
+<dl>
+    <dt><a href="#" id="J-confirm-my">点击这里</a></dt>
+    <dd>
+        <div class="highlight">
+<pre>
+ 
+ seajs.use(['$','comfirmbox'],function($,ConfirmBox){
+    $("#J-confirm-my").click(function(e){
+        e.preventDefault();
+        ConfirmBox.confirm('这里是自定义的',"自定义标题",function(){
+            alert('这里是确定');
+        },{width:500,stype:'success',title:"",confirmTpl:""});
+    });
+ });
+ 
+</pre>
+        </div>
+    </dd>
+</dl>
+</div>
+
+
+
+</div>
+
+
+ <script>
+
+seajs.use(['$','comfirmbox'], function($,ConfirmBox) {
+    var cb = new ConfirmBox({
+        trigger: '#J-confirm-dialog',
+        title: '提示',
+        width:340,
+        message: '确定这是个conform模态框吗?',
+        onConfirm: function() {
+            var that = this;
+            alert("回调写在onConfirm里面");
+            that.hide();
+        }
+    });
+
+    $("#J-alert-info").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这是个普通的提示',null,{width:300,stype:'info'});
+    });
+
+    $("#J-alert-success").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这是成功的提示',null,{width:300,stype:'success'});
+    });
+
+    $("#J-alert-warn").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这是警告提示',null,{width:300,stype:'warn'});
+    });
+
+        $("#J-alert-error").click(function(e){
+        e.preventDefault();
+        ConfirmBox.alert('这里是错误的提示',null,{width:300,stype:'error'});
+    });
+
+    $("#J-alert-fz").click(function(e){
+        e.preventDefault();
+        var _errorHtml = '上传失败,请上传10M以内的文件<br>';
+            _errorHtml += '<span class="gray f12">有问题请咨询:0571-34566777</span><br>'
+            _errorHtml += '<span class="f12"><a href="#">返回首页</></span>';
+        ConfirmBox.alert(_errorHtml,null,{width:500,stype:'error'});
+    });
+
+
+
+      $("#J-confirm-con").click(function(e){
+        e.preventDefault();
+        ConfirmBox.confirm('这里真的是confirm的静态方法吗?',"自定义标题",function(){
+            alert('这里是确定');
+        },{width:350});
+    });
+
+
+    $("#J-confirm-my").click(function(e){
+        e.preventDefault();
+        ConfirmBox.confirm('这里是自定义的',"自定义标题",function(){
+            alert('这里是确定');
+        },{width:500,stype:'success',title:"",confirmTpl:""});
+    });
+
+
+
+});
+
+ </script>
+</html>
