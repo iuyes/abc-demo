@@ -1,0 +1,1 @@
+####app为开发目录,执行 grunt build 会批量替换html中的版本号
